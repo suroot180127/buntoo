@@ -1,0 +1,4 @@
+body { margin: 10px; }
+#unified-inputs.input-group { width: 100%; }
+#unified-inputs.input-group input { width: 50% !important; }
+#unified-inputs.input-group input:last-of-type { border-left: 0; }

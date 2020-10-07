@@ -1,0 +1,21 @@
+{
+  "name": "buntoo_final",
+  "version": "1.0.0",
+  "description": "## Setup virtualenv `virtualenv myenv -p python3`",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodejs": "^0.0.0",
+    "socket.io": "^2.3.0",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "nodeman": "^1.1.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
