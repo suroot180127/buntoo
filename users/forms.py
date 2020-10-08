@@ -6,13 +6,13 @@ from .models import Profile
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
-    phone_number = forms.IntegerField()
+    # phone_number = forms.IntegerField()
     # This form modifies data in the User model
 
     class Meta:
         model = User
         # form fields used in the order you want them to be used
-        fields = ['username', 'email','phone_number','password1', 'password2']
+        fields = ['username', 'email','password1', 'password2']
 
 
 class UserUpdateForm(forms.ModelForm):

@@ -49,14 +49,14 @@ def message_list(request, sender=None, receiver=None):
 
     elif request.method == 'POST':
         data = JSONParser().parse(request)
-        # try:
-        #     data['sender'] = User.objects.get(id=int(data['sender']))
-        # except:
-        #     return JsonResponse(data={'message': 'User does not exisit'}, status=404)
-        # try:
-        #     data['receiver'] = User.objects.get(id=int(data['receiver']))
-        # except:
-        #     return JsonResponse(data={'message': 'User does not exisit'}, status=404)
+        try:
+            data['sender'] = User.objects.get(id=int(data['sender']))
+        except:
+            return JsonResponse(data={'message': 'User does not exisit'}, status=404)
+        try:
+            data['receiver'] = User.objects.get(id=int(data['receiver']))
+        except:
+            return JsonResponse(data={'message': 'User does not exisit'}, status=404)
         serializer = MessageSerializer(data=data)
         if serializer.is_valid():
             serializer.save()

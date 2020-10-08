@@ -130,56 +130,55 @@ def user_profile(request):
     except:
         friend=None
 
-    current = []
-    current_user = Post.objects.filter(author=request.user)
-    for i in current_user:
-        current.append(i)
-    posts = []
-    user_profile = Profile.objects.get(user=request.user)
-    try:
-        friends = user_profile.friends.friend_name.all() 
-        for i in friends:
-            posts.append(Post.objects.filter(author=i).order_by('-date_posted'))
-        posts_sorted=[]
-        for i in posts:
-            for j in i:    
-                posts_sorted.append(j) 
-    except:
-        posts=[]
-        posts_sorted=[]
+    posts = Post.objects.filter(author=request.user)
+    # for i in current_user:
+    #     current.append(i)
+    # posts = []
+    # user_profile = Profile.objects.get(user=request.user)
+    # try:
+    #     friends = user_profile.friends.friend_name.all() 
+    #     for i in friends:
+    #         posts.append(Post.objects.filter(author=i).order_by('-date_posted'))
+    #     posts_sorted=[]
+    #     for i in posts:
+    #         for j in i:    
+    #             posts_sorted.append(j) 
+    # except:
+    #     posts=[]
+    #     posts_sorted=[]
  
 
-    for i in current_user:
-        posts_sorted.append(i)
+    # for i in current_user:
+    #     posts_sorted.append(i)
 
-    posts = sorted(list(chain(posts_sorted)),key= lambda instance:instance.date_posted)[::-1]
-    all_ads = advert.objects.all()
-    alist = {}
+    # posts = sorted(list(chain(posts_sorted)),key= lambda instance:instance.date_posted)[::-1]
+    # all_ads = advert.objects.all()
+    # alist = {}
 
-    count = 0
+    # count = 0
 
-    for i in posts:
-        if count == 8:
-            try:
-                alist['a'+str(len(alist))] = all_ads[random.randint(0,len(all_ads)-1)]
-            except:
-                alist['p'+str(len(alist))] = i
-            count = 0
-        else:
-            alist['p'+str(len(alist))] = i
-            count = count + 1
+    # for i in posts:
+    #     if count == 8:
+    #         try:
+    #             alist['a'+str(len(alist))] = all_ads[random.randint(0,len(all_ads)-1)]
+    #         except:
+    #             alist['p'+str(len(alist))] = i
+    #         count = 0
+    #     else:
+    #         alist['p'+str(len(alist))] = i
+    #         count = count + 1
     
-    blist = []
-    clist = []
-    for i,j in alist.items():
-        clist.append(j)
-        if i[0] == 'a':
-            blist.append(True)
-        else:
-            blist.append(False)
-    empty = -1
-    if not blist and not clist:
-        empty = 1 
+    # blist = []
+    # clist = []
+    # for i,j in alist.items():
+    #     clist.append(j)
+    #     if i[0] == 'a':
+    #         blist.append(True)
+    #     else:
+    #         blist.append(False)
+    # empty = -1
+    # if not blist and not clist:
+    #     empty = 1 
 
 
 
@@ -190,7 +189,7 @@ def user_profile(request):
         'profile_update_form': profile_update_form,
         'friend_List':friend,
         'userzero':userzero,
-        'posts': zip(blist,clist),
+        'posts': posts,
     }
     # render html from templates folder and pass in data using context
     return render(request, 'users/user_profile.html', context)
@@ -199,6 +198,7 @@ def user_profile(request):
 def profile(request,user):
      ######################################
     user_list = []
+    friends_list = []
     for i in User.objects.all():
         user_list.append(i.username)
     user_list_json=json.dumps(user_list)
@@ -209,14 +209,20 @@ def profile(request,user):
     user_profile = Profile.objects.get(user=user)
     print(user_profile)
     try:
-        friend = Friend_List.objects.get(user=request.user).friend_name.all()
+        friends = Friend_List.objects.filter(user=user).values('friend_name')
+        for i in friends:
+            user = User.objects.get(id=i['friend_name'])
+            friends_list.append(user)
+        posts =  Post.objects.filter(author=user_profile.user)
+        print(posts)
     except:
         friend=None
     context = {
         'user_profle': user_profile,
-        'friend_List':friend,
         'user_list_json':user_list_json,
-        'userzero':userzero
+        'userzero':userzero,
+        'friends':friends_list,
+        'posts':posts
        
     }
     return render(request, 'users/profile.html', context)

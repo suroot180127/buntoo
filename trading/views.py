@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from .forms import PostForm , advertform
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.decorators.csrf import csrf_exempt
 import json
 import time
 import random
@@ -148,9 +149,11 @@ def PostView(request):
     }
      
     return render(request,'trading/post.html',context)
+
+@csrf_exempt
 @login_required
 def search(request):
-       ######################################
+    ######################################
     user_list = []
     for i in User.objects.all():
         user_list.append(i.username)
@@ -168,8 +171,31 @@ def search(request):
         friend_list = Friend_List.objects.get(user=request.user).friend_name.all(),
     except ObjectDoesNotExist:
         friend_list = None
- 
- 
+
+
+    ############################################
+    action = request.POST.get('action')
+
+    if action:
+        ids= request.POST.get('id')
+        print(ids)
+        name = User.objects.get(id=ids)
+        try:
+            instance=Friend_List.objects.get(user=request.user)
+            instance.friend_name.add(name)
+        except ObjectDoesNotExist:
+            instance=Friend_List.objects.create(user=request.user)
+            pro=Profile.objects.get(user=request.user)
+            pro.friends=instance
+            pro.save()
+        
+            print('success')
+            instance.friend_name.add(name)
+   
+
+    ################################################
+
+
     context={
         'friend_list':friend_list,
         'user':user,

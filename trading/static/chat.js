@@ -71,48 +71,48 @@ function register(username, password) {
             $('#id_username').addClass('invalid');
         })
 }
-var socket = new WebSocket('ws://' + window.location.host +'/ws?session_key=${sessionKey}');
+// var socket = new WebSocket('ws://' + window.location.host +'/ws?session_key=${sessionKey}');
 
-socket.onclose = function(e) {
-	console.log('erro',e);
-};  
+// socket.onclose = function(e) {
+// 	console.log('erro',e);
+// };  
 
-socket.onopen = function(e) {
-	console.log('open',e);
-};
+// socket.onopen = function(e) {
+// 	console.log('open',e);
+// };
 
-socket.onmessage = function(e) {
-	const data = JSON.parse(e.data);
-	console.log("real time ",data);
+// socket.onmessage = function(e) {
+// 	const data = JSON.parse(e.data);
+// 	console.log("real time ",data);
 	
-	if (data.receiver !== currentUser) {
-		const messagesOutputElement = document.querySelector('.chat-messages');
-		messagesOutputElement.innerHTML += `<div class='card chat-message'><b>${data.receiver} </b><p>${data.message}</p></div>`;
-	}
-    var socket = new WebSocket('ws://' + window.location.host +'/ws?session_key=${sessionKey}');
+// 	if (data.receiver !== currentUser) {
+// 		const messagesOutputElement = document.querySelector('.chat-messages');
+// 		messagesOutputElement.innerHTML += `<div class='card chat-message'><b>${data.receiver} </b><p>${data.message}</p></div>`;
+// 	}
+//     var socket = new WebSocket('ws://' + window.location.host +'/ws?session_key=${sessionKey}');
 
-    socket.onclose = function(e) {
-        console.log('erro',e);
-    };  
+//     socket.onclose = function(e) {
+//         console.log('erro',e);
+//     };  
     
-    socket.onopen = function(e) {
-        console.log('open',e);
-    };
+//     socket.onopen = function(e) {
+//         console.log('open',e);
+//     };
     
-    socket.onmessage = function(e) {
-        const data = JSON.parse(e.data);
-        console.log("real time ",data);
-        if (data.length !== 0) {
-            for (var i = 0; i < data.length; i++) {
-                console.log(data[i]);
-                var box = text_box.replace('{sender}', data[i].sender);
-                box = box.replace('{message}', data[i].message);
-                box = box.replace('right', 'left blue lighten-5');
-                $('#board').append(box);
-                scrolltoend();
-            }
-        }
+//     socket.onmessage = function(e) {
+//         const data = JSON.parse(e.data);
+//         console.log("real time ",data);
+//         if (data.length !== 0) {
+//             for (var i = 0; i < data.length; i++) {
+//                 console.log(data[i]);
+//                 var box = text_box.replace('{sender}', data[i].sender);
+//                 box = box.replace('{message}', data[i].message);
+//                 box = box.replace('right', 'left blue lighten-5');
+//                 $('#board').append(box);
+//                 scrolltoend();
+//             }
+//         }
         
     
-    };
+//     };
 };

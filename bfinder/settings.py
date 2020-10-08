@@ -121,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {'NAME': 'users.validators.SymbolValidator', 'OPTIONS': {'min_digits': 1, } },
     {'NAME': 'users.validators.LowercaseValidator', 'OPTIONS': {'min_digits': 8, } },
-    {'NAME': 'users.validators.UppercaseValidator',  'OPTIONS': {'min_digits': 1, }},
+    {'NAME': 'users.validators.UppercaseValidator',  'OPTIONS': {'min_digits': 1, } },
     {'NAME': 'users.validators.NumberValidator', 'OPTIONS': {'min_digits': 1, } },
     
     
@@ -181,7 +181,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'futuresoftcode@gmail.com'
-EMAIL_HOST_PASSWORD = 'Sul03314307703'
+EMAIL_HOST_PASSWORD = 'colemantylan@yahoo.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 #-------------------------------------------------------------------------

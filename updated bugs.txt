@@ -1,0 +1,31 @@
+{% comment %} 1. Sign up form(fix error that pops up to match error in sign up/ log in form)Fix Password validation/ change "Name" to "Username"  
+
+    Password requires 8 letters/ one capitol letter/ and one Special Character  ((should be able to put number in password))Thebuntwo2  !!!! {% endcomment %}
+
+2. ((Change host email to business email ))Reset password link doesn't send to email  !!!! colemantylan@yahoo.com  = (updated password)
+
+
+{% comment %} 4. Allow people to see only thier posts on their profile page, Allow people to see friends posts on thier profile page  !!!! {% endcomment %}
+
+5(AfterBugs). Make sure website is mobile responsive design (AfterBugs)   !!!! (Skip)
+
+6.(Change database flow)   When we add friend, it adds that friend to everyone's friends list(Make it so it only adds 
+	to the 2 people getting connected(if possible send "connect" request to other persons inbox that has to be clicked in order to be connected))  !!!!
+
+7. Allow people to use to use Phone Number OR Email to during sign up (split "Email Address" bar in half and put" Or " "Phone Number" to the right of it) !!!!
+
+{% comment %} 8(Maybe completed with new files). After clicking "Connect" button on search page, the page goes blank currently. Allow other friends to still be displayed after clicking "Connect" request {% endcomment %}
+
+
+10. Fix Inbox messaging feature so people can recieve message in real time. (Inbox feature wont recieve messaging real time)(Make sure when we click off screen of inbox
+	the inbox closes on all pages) (Add notification of message)   !!!!
+
+
+12. Fix redundantcy in code (dont forget to leave commits)
+
+
+
+
+
+
+

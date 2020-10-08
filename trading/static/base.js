@@ -113,16 +113,18 @@ socket.onopen = function(e) {
 	console.log('open',e);
 };
 
+
 socket.onmessage = function(e) {
 	const data = JSON.parse(e.data);
 	console.log("real time ",data);
-	
-	if (data.receiver !== currentUser) {
-		const messagesOutputElement = document.querySelector('.chat-messages');
-		messagesOutputElement.innerHTML += `<div class='card chat-message'><b>${data.receiver} </b><p>${data.message}</p></div>`;
-	}
+	const messagesOutputElement = document.querySelector('.chat-messages');
+	messagesOutputElement.innerHTML += `
+	<div class='card chat-message'>
+	<b>${data.receiver} </b>
+	<p>${data.message}</p>
+	</div>`;
+}
 
-};
 
 
 sendMessageButton.addEventListener('click', () => {
@@ -151,7 +153,7 @@ sendMessageButton.addEventListener('click', () => {
 				<p>${data.message}</p>
 				</div>`;
 			}
-			
+			};			
 			document.getElementById('post-message').value = '';
 			sendMessageButton.innerHTML = 'Send';
 			
