@@ -115,4 +115,4 @@ function register(username, password) {
         
     
 //     };
-};
+// };
