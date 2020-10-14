@@ -395,26 +395,45 @@ from .serializers import *
 from rest_framework import viewsets
 from rest_framework import generics
 from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 class ProfileViewset(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user__username',)
+
+class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+    lookup_field = 'username'
+    lookup_url_kwarg = 'user'
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
 class PostViewset(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('author__username',)
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    # lookup_field = 'author'
+    # lookup_url_kwarg = 'user_name'
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
 
 class FriendViewset(viewsets.ModelViewSet):
     queryset = Friend_List.objects.all()
     serializer_class = FriendSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user__username',)
 
 class FriendListDetail(generics.RetrieveUpdateDestroyAPIView):
+    lookup_field = 'username'
+    lookup_url_kwarg = 'user_name'
     serializer_class = FriendSerializer
+
     queryset = Friend_List.objects.all()
 
 

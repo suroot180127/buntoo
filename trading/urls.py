@@ -21,7 +21,8 @@ urlpatterns = [
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/register/', include('rest_auth.registration.urls')),
     path('postdetail/<int:pk>/', views.PostDetail.as_view()),
-    path('friends/<int:pk>/', views.FriendListDetail.as_view()),
+    path('friends/<str:user_name>/', views.FriendListDetail.as_view()),
+    path('profiledetail/<str:user>/', views.ProfileDetail.as_view()),
     path('searchapi/', views.SearchAPIView.as_view()),
     path('reference/<int:id>', views.reference, name='reference'),
 

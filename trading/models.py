@@ -22,6 +22,13 @@ class advert(models.Model):
 class Friend_List(models.Model):
     user = models.ForeignKey(User , on_delete= models.CASCADE)
     friend_name = models.ManyToManyField(User,related_name='list')
+    username = models.CharField(max_length=500,blank=True)
+
+   
+    def save(self, *args, **kwargs):
+        self.username = self.user.username
+        super(Friend_List, self).save(*args, **kwargs)
+
 
     def __str__(self):
         return self.user.username

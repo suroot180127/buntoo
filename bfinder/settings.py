@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_auth.registration',
+    'django_filters'
 
 
 ]
@@ -98,6 +99,18 @@ TEMPLATES = [
         },
     },
 ]
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'defaultdb',
+#        'USER': 'doadmin',
+#        'PASSWORD':'u02pume6b1taqfoj',
+#        'HOST':'clouddatabase-do-user-7851294-0.a.db.ondigitalocean.com',
+#        'PORT':'25060'
+
+#  }
+# }
 
 WSGI_APPLICATION = 'bfinder.wsgi.application'
 
